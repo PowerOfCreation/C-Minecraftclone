@@ -1,7 +1,12 @@
 #pragma once
 
 #include "WindowManager.h"
+#ifdef __linux__ 
 #include <GLFW/glfw3.h>
+#elif _WIN32
+#include "GLFW/glfw3.h"
+#endif
+
 
 struct InputManager
 {

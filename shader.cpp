@@ -10,7 +10,13 @@ using namespace std;
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef __linux__ 
 #include <GL/glew.h>
+#elif _WIN32
+#include "GL/glew.h"
+#else
+
+#endif
 
 #include "shader.h"
 

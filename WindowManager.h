@@ -3,9 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef __linux__ 
 #include <GL/glew.h>
-
 #include <GLFW/glfw3.h>
+#elif _WIN32
+#include "GL/glew.h"
+#include "GLFW/glfw3.h"
+#else
+
+#endif
+
 
 struct WindowManager
 {
