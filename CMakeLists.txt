@@ -6,9 +6,7 @@ set (CMAKE_CXX_STANDARD 11)
 add_executable(main Main.cpp texture.cpp shader.cpp FastNoise.cpp)
 find_package(OpenGL REQUIRED)
 
-
 include_directories( ${OPENGL_INCLUDE_DIRS} )
-
 
 IF (WIN32)
   target_link_libraries(main ${CMAKE_CURRENT_SOURCE_DIR}/GLEW_1130.lib ${CMAKE_CURRENT_SOURCE_DIR}/glfw3.lib ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${X11_LIBRARIES})
