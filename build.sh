@@ -1,19 +1,22 @@
 #!/bin/sh
-git submodule init && git submodule update || exit -1
 
 CMAKE_GENERATOR="Unix Makefiles"
 
-if [ -n ${MINGW_PACKAGE_PREFIX} ]; then
-	GLEW_PKG="${MINGW_PACKAGE_PREFIX}-glew"
+if [ -n "${MINGW_PACKAGE_PREFIX}" ]; then
 	if [ $(command -v pacman) ]; then
-		pacman -Q ${GLEW_PKG} || pacman -S ${GLEW_PKG} || exit -2
+		GLEW_PKG="${MINGW_PACKAGE_PREFIX}-glew"
+		CMAKE_PKG="${MINGW_PACKAGE_PREFIX}-cmake"
+		pacman -Q ${GLEW_PKG} || pacman -S ${GLEW_PKG} || exit -1
+		pacman -Q ${CMAKE_PKG} || pacman -S ${CMAKE_PKG} || exit -1
 	fi
-	if [ -n ${MSYSTEM} ]; then
+	if [ -n "${MSYSTEM}" ]; then
 		CMAKE_GENERATOR="MSYS Makefiles"
 	else
 		CMAKE_GENERATOR="MinGW Makefiles"
 	fi
 fi
+
+git submodule init && git submodule update || exit -2
 
 if [ ! -d build ]; then
 	mkdir build || exit -3
