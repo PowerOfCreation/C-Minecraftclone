@@ -6,6 +6,7 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "Generate installation target" FORCE)
 
 find_package(OpenGL REQUIRED)
+find_package(GLEW REQUIRED)
 find_library(GLEW_LIBRARY NAMES glew.lib glew32.lib libglew.a libglew32.a PATH_SUFFIXES lib64 libx32)
 add_subdirectory(glfw)
 
